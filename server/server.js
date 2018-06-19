@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 // Using Node.js `require()`
 const mongoose = require('mongoose');
+const path = require('path');
 
 
 //Este paquete (bodyParser) serializa en un objeto json la información 
@@ -16,6 +17,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
+
+//habilitar la carpet public para que pueda ser accedida desde cualquier lugar
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 //Config. global de rutas
 app.use(require('./routes/index'));
